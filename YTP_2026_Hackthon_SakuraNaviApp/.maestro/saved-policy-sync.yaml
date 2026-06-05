@@ -1,0 +1,20 @@
+appId: com.anonymous.sakura-navi-app
+---
+- launchApp
+- waitForAnimationToEnd
+- assertVisible:
+    id: chat-input
+- tapOn:
+    id: chat-input
+- inputText: 我想找求職資源
+- tapOn:
+    id: chat-send-button
+- assertVisible:
+    id: policy-inline-save-mock-policy-1
+- tapOn:
+    id: policy-inline-save-mock-policy-1
+- tapOn:
+    id: chat-open-sidebar
+- tapOn:
+    id: sidebar-go-profile
+- assertVisible: 收藏政策

@@ -1,0 +1,102 @@
+# RAG Document Classification Configuration
+# =========================================
+# This file defines tags and classification rules for RAG documents.
+# Tags can be extracted from document metadata or filename patterns.
+
+tags:
+  # Topic tags
+  - name: entrepreneurship
+    display_name: 創業諮詢
+    namespace: topic
+  - name: international
+    display_name: 國際交流
+    namespace: topic
+  - name: youth_subsidy
+    display_name: 青年補助
+    namespace: topic
+  - name: general
+    display_name: 一般資訊
+    namespace: topic
+
+  # News type tags
+  - name: latest_news
+    display_name: 最新公告
+    namespace: news
+  - name: policy_news
+    display_name: 政策新聞
+    namespace: news
+
+  # Target audience tags
+  - name: youth
+    display_name: 青年
+    namespace: target
+  - name: student
+    display_name: 學生
+    namespace: target
+  - name: entrepreneur
+    display_name: 創業者
+    namespace: target
+
+classification_rules:
+  # Priority 1: Metadata extraction (highest priority)
+  # Format in markdown: > **標籤**: youth_subsidy, latest_news
+  - tag: latest_news
+    namespace: news
+    priority: 30
+    source: metadata
+    metadata_key: news_type
+
+  - tag: policy_news
+    namespace: news
+    priority: 30
+    source: metadata
+    metadata_key: news_type
+
+  - tag: youth_subsidy
+    namespace: topic
+    priority: 20
+    source: metadata
+    metadata_key: 分類
+
+  - tag: entrepreneurship
+    namespace: topic
+    priority: 20
+    source: metadata
+    metadata_key: 分類
+
+  - tag: international
+    namespace: topic
+    priority: 20
+    source: metadata
+    metadata_key: 分類
+
+  # Priority 2: Filename pattern matching (legacy files without metadata)
+  - tag: youth_subsidy
+    namespace: topic
+    priority: 10
+    source: filename
+    filename_pattern: "青年補助_*"
+
+  - tag: entrepreneurship
+    namespace: topic
+    priority: 10
+    source: filename
+    filename_pattern: "創業諮詢_*"
+
+  - tag: international
+    namespace: topic
+    priority: 10
+    source: filename
+    filename_pattern: "國際交流_*"
+
+  - tag: latest_news
+    namespace: news
+    priority: 10
+    source: filename
+    filename_pattern: "最新公告_*"
+
+  - tag: policy_news
+    namespace: news
+    priority: 10
+    source: filename
+    filename_pattern: "新聞資訊_*"

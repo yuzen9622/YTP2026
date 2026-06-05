@@ -1,0 +1,15 @@
+{
+  "extends": "expo/tsconfig.base",
+  "ts-node": {},
+  "compilerOptions": {
+    "strict": true,
+    "paths": {
+      "@/*": [
+        "./src/*"
+      ],
+    }
+  },
+  "exclude": [
+    "src/store/__tests__/**"
+  ]
+}
